@@ -1,0 +1,18 @@
+# vscode configuration
+.vscode/
+
+# python artifacts
+*.py[abc]
+**/__pycache__
+
+# pytest artifacts
+**/.pytest_cache
+
+# sample data provided by customer (DO NOT COMMIT)
+**/samples
+**/scripts
+**/*.sql
+
+# package distribution
+*.egg-info
+dist/*
