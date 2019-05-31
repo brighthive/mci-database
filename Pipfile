@@ -4,6 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+expects = "*"
 
 [packages]
 flask = "*"
@@ -11,8 +12,6 @@ flask-sqlalchemy = "*"
 flask-restful = "*"
 flask-migrate = "*"
 psycopg2-binary = "*"
-pytest = "*"
-expects = "*"
 
 [requires]
 python_version = "3.7"
