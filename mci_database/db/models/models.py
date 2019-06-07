@@ -202,6 +202,21 @@ class Individual(db.Model):
         self.email_address = email_address
         self.telephone = telephone
 
+    @property
+    def as_dict(self):
+        '''
+        Represent the Individual as a dict that uses empty strings for None values.
+        '''
+        dict_repr = {column.name: getattr(self, column.name)
+            for column in self.__table__.columns}
+        
+        for k, v in dict_repr.items():
+            if v is None:
+                dict_repr[k] = ""
+            else:
+                dict_repr[k] = str(v)
+
+        return dict_repr
 
 class IndividualDisposition(db.Model):
     individual_id = db.Column(db.String(40), db.ForeignKey(
