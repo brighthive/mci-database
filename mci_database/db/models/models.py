@@ -150,6 +150,10 @@ class Individual(db.Model):
 
         telephone (str): Individual's telephone number.
 
+        telephone_2 (str): Indvidual's second known number.
+
+        telephone_3 (str): Individual's third known number.
+
     """
     mci_id = db.Column(db.String(40), primary_key=True)
     vendor_id = db.Column(db.String(40))
@@ -163,6 +167,8 @@ class Individual(db.Model):
     date_of_birth = db.Column(db.Date, nullable=False)
     email_address = db.Column(db.String(100))
     telephone = db.Column(db.String(20))
+    telephone_2 = db.Column(db.String(20))
+    telephone_3 = db.Column(db.String(20))
     mailing_address_id = db.Column(
         db.Integer, db.ForeignKey(Address.id, ondelete='CASCADE'))
     gender_id = db.Column(db.Integer, db.ForeignKey(
@@ -189,6 +195,8 @@ class Individual(db.Model):
                  date_of_birth=None,
                  email_address=None,
                  telephone=None,
+                 telephone_2=None,
+                 telephone_3=None,
                  dispositions=None):
         self.mci_id = MasterClientIDFactory.get_id()
         self.vendor_id = vendor_id
@@ -201,6 +209,8 @@ class Individual(db.Model):
         self.date_of_birth = date_of_birth
         self.email_address = email_address
         self.telephone = telephone
+        self.telephone_2 = telephone_2
+        self.telephone_3 = telephone_3
 
     @property
     def as_dict(self):
