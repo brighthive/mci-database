@@ -17,22 +17,15 @@ config = context.config
 fileConfig(config.config_file_name)
 logger = logging.getLogger('alembic.env')
 
-# Helper variable to indicate that Alembic is operating outside of an app context.
-is_offline = False
-
 # add your model's MetaData object here
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 from flask import current_app
 
-try: 
-    config.set_main_option('sqlalchemy.url',
-                       current_app.config.get('SQLALCHEMY_DATABASE_URI'))
-    target_metadata = current_app.extensions['migrate'].db.metadata
-except RuntimeError as e:
-    is_offline = True
-
+config.set_main_option('sqlalchemy.url',
+                    current_app.config.get('SQLALCHEMY_DATABASE_URI'))
+target_metadata = current_app.extensions['migrate'].db.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
@@ -97,7 +90,7 @@ def run_migrations_online():
             context.run_migrations()
 
 
-if context.is_offline_mode() or is_offline:
+if context.is_offline_mode():
     run_migrations_offline()
 else:
     run_migrations_online()
