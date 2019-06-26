@@ -36,8 +36,9 @@ The Pipfile contains the reference as such:
 mci-database = {editable = true,git = "https://github.com/brighthive/mci-database.git",ref = "master"}
 ```
 
-If you find that your MCI container or matching service do not have the correct migrations, then check the "ref" number. You also manually install this repo with:
+If you find that your MCI container or matching service do not have the correct migrations, then check the "ref" number. You can also manually uninstall and re-install this repo with:
 
 ```
+pipenv uninstall mci-database
 pipenv install -e git+https://github.com/brighthive/mci-database.git@master#egg=mci_database
 ```
