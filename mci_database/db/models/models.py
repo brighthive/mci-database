@@ -242,6 +242,14 @@ class IndividualEthnicityRace(db.Model):
         EthnicityRace.id, ondelete='CASCADE'), nullable=False, primary_key=True)
 
 
+class IndividualPIIRemoval(db.Model):
+    individual_id = db.Column(db.String(40), db.ForeignKey(
+        Individual.mci_id, ondelete='CASCADE'), nullable=False, primary_key=True)
+    removal_timestamp = db.Column(
+        db.DateTime, server_default=db.func.now(), nullable=False)
+    comment = db.Column(db.String(500))
+    
+
 class Referral(db.Model):
     """An individual's referral.
 
