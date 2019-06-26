@@ -23,7 +23,7 @@ def upgrade():
                     sa.Column('comment', sa.String(length=100), nullable=True),
                     sa.Column('individual_id', sa.String(length=40), nullable=False),
                     sa.ForeignKeyConstraint(['individual_id'], ['individual.mci_id'], ondelete='CASCADE'),
-                    sa.PrimaryKeyConstraint('individual_id', 'disposition_id')
+                    sa.PrimaryKeyConstraint('individual_id')
                     )
 
 
