@@ -160,11 +160,11 @@ class Individual(db.Model):
     ssn = db.Column(db.String(20))
     registration_date = db.Column(
         db.DateTime, server_default=db.func.now(), nullable=False)
-    first_name = db.Column(db.String(100), nullable=False)
+    first_name = db.Column(db.String(100))
     suffix = db.Column(db.String(10))
     middle_name = db.Column(db.String(100))
     last_name = db.Column(db.String(100))
-    date_of_birth = db.Column(db.Date, nullable=False)
+    date_of_birth = db.Column(db.Date)
     email_address = db.Column(db.String(100))
     telephone = db.Column(db.String(20))
     telephone_2 = db.Column(db.String(20))
@@ -241,6 +241,14 @@ class IndividualEthnicityRace(db.Model):
     ethnicity_race_id = db.Column(db.Integer, db.ForeignKey(
         EthnicityRace.id, ondelete='CASCADE'), nullable=False, primary_key=True)
 
+
+class IndividualPIIRemoval(db.Model):
+    individual_id = db.Column(db.String(40), db.ForeignKey(
+        Individual.mci_id, ondelete='CASCADE'), nullable=False, primary_key=True)
+    removal_timestamp = db.Column(
+        db.DateTime, server_default=db.func.now(), nullable=False)
+    comment = db.Column(db.String(500))
+    
 
 class Referral(db.Model):
     """An individual's referral.
