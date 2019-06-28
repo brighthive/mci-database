@@ -25,11 +25,11 @@ class Address(db.Model):
 
     """
     id = db.Column(db.Integer, primary_key=True)
-    address = db.Column(db.String(100), nullable=False)
-    city = db.Column(db.String(100), nullable=False)
-    state = db.Column(db.String(20), nullable=False)
-    postal_code = db.Column(db.String(20), nullable=False)
-    country = db.Column(db.String(2), nullable=False)
+    address = db.Column(db.String(100))
+    city = db.Column(db.String(100))
+    state = db.Column(db.String(20))
+    postal_code = db.Column(db.String(20))
+    country = db.Column(db.String(2))
 
     def __init__(self, address=None, city=None, state=None, postal_code=None, country=None):
         self.address = address
