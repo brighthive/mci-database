@@ -5,6 +5,10 @@ verify_ssl = true
 
 [dev-packages]
 expects = "*"
+pytest = "*"
+pycodestyle = "*"
+"autopep8" = "*"
+pytest-cov = "*"
 
 [packages]
 flask = "*"
