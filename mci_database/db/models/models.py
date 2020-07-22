@@ -160,6 +160,7 @@ class Individual(db.Model):
     ssn = db.Column(db.String(20))
     registration_date = db.Column(
         db.DateTime, server_default=db.func.now(), nullable=False)
+    vendor_creation_date = db.Column(db.DateTime)
     first_name = db.Column(db.String(100))
     suffix = db.Column(db.String(10))
     middle_name = db.Column(db.String(100))
