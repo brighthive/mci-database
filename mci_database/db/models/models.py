@@ -21,6 +21,8 @@ class Address(db.Model):
 
         postal_code (str): The postal code of the location.
 
+        county (str): The US county associated with the location.
+
         country (str): The two digit country code where the location exists.
 
     """
@@ -29,13 +31,15 @@ class Address(db.Model):
     city = db.Column(db.String(100))
     state = db.Column(db.String(20))
     postal_code = db.Column(db.String(20))
+    county = db.Column(db.String(125))
     country = db.Column(db.String(2))
 
-    def __init__(self, address=None, city=None, state=None, postal_code=None, country=None):
+    def __init__(self, address=None, city=None, state=None, postal_code=None, county=None, country=None):
         self.address = address
         self.city = city
         self.state = state
         self.postal_code = postal_code
+        self.county = county
         self.country = country
 
 
@@ -219,8 +223,8 @@ class Individual(db.Model):
         Represent the Individual as a dict that uses empty strings for None values.
         '''
         dict_repr = {column.name: getattr(self, column.name)
-            for column in self.__table__.columns}
-        
+                     for column in self.__table__.columns}
+
         for k, v in dict_repr.items():
             if v is None:
                 dict_repr[k] = ""
@@ -228,6 +232,7 @@ class Individual(db.Model):
                 dict_repr[k] = str(v)
 
         return dict_repr
+
 
 class IndividualDisposition(db.Model):
     individual_id = db.Column(db.String(40), db.ForeignKey(
@@ -249,7 +254,7 @@ class IndividualPIIRemoval(db.Model):
     removal_timestamp = db.Column(
         db.DateTime, server_default=db.func.now(), nullable=False)
     comment = db.Column(db.String(500))
-    
+
 
 class Referral(db.Model):
     """An individual's referral.
